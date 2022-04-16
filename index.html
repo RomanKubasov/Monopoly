@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Monopoly</title>
+</head>
+
+<body>
+  <div id = 'screen'>
+    <div id = 'title'></div>
+    <div id = 'main'>
+      <div id = 'info'>
+        <div id = 'tableau'>
+          <span class = 'messages'>Current action</span>
+          <span class = 'messages previous'>Previous action</span>
+        </div>
+        <div id = 'actions'>
+          <div id = 'question'><span>Do you want to buy?</span></div>
+          <button class = 'btn yes'>Yes</button>
+          <button class = 'btn no'>No</button>
+        </div>
+        <div id = 'list_of_players'>
+          <div class = 'player player_title'>
+            <span class = 'name'>PLAYER</span>
+            <div class = 'icon'></div>
+            <span class = 'balance'>BALANCE</span>
+          </div>
+        </div>
+      </div>
+      <div id = 'playingfield'>
+
+        <div class = 'row up'>
+          <div class = 'corner_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'horizontal_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'horizontal_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'horizontal_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'horizontal_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+           <div class = 'horizontal_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'corner_up cell'>
+            <div class = 'content rotate_up'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+        </div>
+
+        <div class = 'rightcorner'>
+          <div class = 'column right'>
+            <div class = 'vertical_right cell'>
+              <div class = 'content rotate_right'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'vertical_right cell'>
+              <div class = 'content rotate_right'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'vertical_right cell'>
+              <div class = 'content rotate_right'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'vertical_right cell'>
+              <div class = 'content rotate_right'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+             <div class = 'vertical_right cell'>
+              <div class = 'content rotate_right'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+          </div>
+
+          <div class = 'center'></div>
+
+          <div class = 'row down'>
+            <div class = 'corner_right_down cell'>
+              <div class = 'content'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'horizontal_down cell'>
+              <div class = 'content'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'horizontal_down cell'>
+              <div class = 'content'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'horizontal_down cell'>
+              <div class = 'content'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+            <div class = 'horizontal_down cell'>
+              <div class = 'content'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+             <div class = 'horizontal_down cell'>
+              <div class = 'content'>
+                <div class = 'desc'></div>
+                <div class = 'picture'></div>
+                <div class = 'guests'></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class = 'column left'>
+          <div class = 'corner_left_down cell'>
+            <div class = 'content'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'vertical_left cell'>
+            <div class = 'content rotate_left'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'vertical_left cell'>
+            <div class = 'content rotate_left'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'vertical_left cell'>
+            <div class = 'content rotate_left'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+          <div class = 'vertical_left cell'>
+            <div class = 'content rotate_left'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+           <div class = 'vertical_left cell'>
+            <div class = 'content rotate_left'>
+              <div class = 'desc'></div>
+              <div class = 'picture'></div>
+              <div class = 'guests'></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
