@@ -81,10 +81,9 @@
 
 #actions {
   display: flex;
-  width: 70%;
+  width: 100%;
   height: 50px;
   margin-top: 20px;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -94,7 +93,7 @@
   justify-content: center;
   text-align: left;
   padding-left: 10px;
-  width: 70%;
+  width: 50%;
   height: 30px;
   background-color: white;
   border: 1px solid gray;
@@ -102,17 +101,15 @@
 }
 
 .btn {
-  width: 12%;
+  width: 10%;
   height: 30px;
   border: 1px solid gray;
   border-radius: 5px;
-}
-
-.yes {
   background-color: lightgreen;
+  margin-left: 3%;
 }
 
-.no {
+#no {
   background-color: rgba(255, 0, 0, 0.3);
 }
 
@@ -142,10 +139,6 @@
   margin-left: 10%;
   margin-right: 10%;
   font-size: larger;
-}
-
-.icon {
-  width: 30%;
 }
 
 .balance {
@@ -275,16 +268,32 @@
   align-items: center;
   justify-content: center;
   width: 90%;
-  height: 60%;
+  height: 50%;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  height: 10%;
+  background-color: yellow;
 }
 
 .guests {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  flex-wrap: wrap;
   width: 90%;
   height: 20%;
-  background-color: aquamarine;
+}
+
+.token {
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  border: 1px solid gray;
+  border-radius: 9px;
 }
 
 .rotate_right {
