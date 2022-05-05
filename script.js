@@ -128,7 +128,7 @@ for (let i = 0; i < cells.length; i++) {
 const numberOfPlayers = prompt('How many players do you want? Enter 2, 3, 4.');
 const player = [];
 for (let i = 0; i < numberOfPlayers; i++) {
-  player[i] = new Player(i, prompt(`Enter the name of Player #${i+1}`), colors[i]);
+  player[i] = new Player(i, prompt(`Enter the name of Player #${i + 1}`), colors[i]);
 }
 for (let i = 0; i < player.length; i++) {
   const addPlayer = document.createElement('div');
@@ -211,7 +211,7 @@ function rent(who) {
     value = 2;
   }
   who.balance -= amount;
-  tickets[who.position].owner.balance += tickets[who.position].price[0] * 1;
+  tickets[who.position].owner.balance += amount;
   document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
   document.getElementById(`player${tickets[who.position].owner.number}`).lastChild.innerText = `${tickets[who.position].owner.balance}$`;
   return value;
@@ -232,7 +232,7 @@ function chance(who) {
       break;
     }
     case 2: {
-      const pos = Math.ceil(Math.random() * n);
+      const pos = Math.floor(Math.random() * 7) * (n / 8) + Math.ceil(Math.random() * 2);
       move(who, n - who.position + pos);
       addNewMessage(`CHANCE : ${who.name} moved to ${tickets[who.position].desc}`);
       break;
