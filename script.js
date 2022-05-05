@@ -2,100 +2,134 @@ const n = 24; // number of cells
 const msgs = document.querySelectorAll('.messages');
 const cells = document.querySelectorAll('.content');
 const listOfPlayers = document.getElementById('list_of_players');
-const player = [
-  {
-    number: 0, name: 'Lev', color: 'green', balance: 20, position: 0,
-  },
-  {
-    number: 1, name: 'Computer', color: 'red', balance: 20, position: 0,
-  },
-];
-const fields = ['desc', 'picture', 'price', 'guests']; // for filling the tickets (DOM)
+const colors = ['green', 'red', 'gold', 'blue'];
+class Player {
+  constructor(i, name, color) {
+    this.number = i,
+    this.name = name,
+    this.color = color,
+    this.balance = 20,
+    this.position = 0;
+  }
+}
+
+const fields = ['color', 'desc', 'price', 'guests']; // for filling the tickets (DOM)
 const tickets = [
   {
-    desc: 'Toy Shop', picture: '', price: '1$', guests: ['Lev'], host: '', color: 'green',
+    desc: 'GO', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Burger Joint', price: '1$', guests: [], owner: '', color: 'sienna',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Pizza House', price: '1$', guests: [], owner: '', color: 'sienna',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Chance', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Candy Store', price: '1$', guests: [], owner: '', color: 'lightblue',
   },
   {
-    desc: 'Toy Shop', picture: '', price: '1$', guests: ['Lev'], host: '', color: 'green',
+    desc: 'Ice Cream Parlor', price: '1$', guests: [], owner: '', color: 'lightblue',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Jail', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Museum', price: '2$', guests: [], owner: '', color: 'pink',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Library', price: '2$', guests: [], owner: '', color: 'pink',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Chance', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Toy Shop', picture: '', price: '1$', guests: ['Lev'], host: '', color: 'green',
+    desc: 'Swimming Pool', price: '2$', guests: [], owner: '', color: 'orange',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Skate Park', price: '2$', guests: [], owner: '', color: 'orange',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Free Parking', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Video Games', price: '3$', guests: [], owner: '', color: 'red',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Cinema', price: '3$', guests: [], owner: '', color: 'red',
   },
   {
-    desc: 'Toy Shop', picture: '', price: '1$', guests: ['Lev'], host: '', color: 'green',
+    desc: 'Chance', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Toy Store', price: '3$', guests: [], owner: '', color: 'yellow',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Pet Store', price: '3$', guests: [], owner: '', color: 'yellow',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'GoToJail', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Bowling Alley', price: '4$', guests: [], owner: '', color: 'green',
   },
   {
-    desc: 'Toy Shop', picture: '', price: '1$', guests: ['Lev'], host: '', color: 'green',
+    desc: 'Zoo', price: '4$', guests: [], owner: '', color: 'green',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Chance', price: '', guests: [], owner: 'noOwner', color: '',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Park Place', price: '5$', guests: [], owner: '', color: 'blue',
   },
   {
-    desc: 'Zoo', picture: '', price: '2$', guests: [], host: '', color: 'green',
+    desc: 'Boardwalk', price: '5$', guests: [], owner: '', color: 'blue',
   },
 ];
 
 // filling the playing field
-for (const addTicket of cells) {
-  for (let i = 0; i < fields.length; i++) {
+for (let i = 0; i < cells.length; i++) {
+  for (let j = 0; j < fields.length; j++) {
     const addField = document.createElement('div');
-    addField.className = fields[i];
-    addTicket.appendChild(addField);
+    addField.className = fields[j];
+    switch (fields[j]) {
+      case 'color': {
+        if (tickets[i].color !== '') {
+          addField.style.backgroundColor = tickets[i].color;
+          const addOwner = document.createElement('div');
+          addOwner.className = 'owner';
+          addOwner.id = `owner${i}`;
+          addField.innerHTML = '&nbsp owns:';
+          addField.appendChild(addOwner);
+          if (['blue', 'green', 'sienna', 'red'].includes(tickets[i].color)) {
+            addField.style.color = 'white';
+            addOwner.style.borderColor = 'white';
+          }
+        }
+        break;
+      }
+      case 'desc': {
+        addField.innerText = tickets[i].desc;
+        break;
+      }
+      case 'price': {
+        addField.innerText = tickets[i].price;
+        break;
+      }
+      default: { break; }
+    }
+    cells[i].appendChild(addField);
   }
 }
 
 // filling the list of players
+const numberOfPlayers = prompt('How many players do you want? Enter 2, 3, 4.');
+const player = [];
+for (let i = 0; i < numberOfPlayers; i++) {
+  player[i] = new Player(i, prompt(`Enter the name of Player #${i+1}`), colors[i]);
+}
 for (let i = 0; i < player.length; i++) {
   const addPlayer = document.createElement('div');
   addPlayer.className = 'player';
@@ -112,50 +146,46 @@ for (let i = 0; i < player.length; i++) {
 }
 
 // additional technical functions
-const addNoButton = function () {
-  if (!document.getElementById('no')) {
-    const no = document.createElement('button');
-    no.className = 'btn';
-    no.id = 'no';
-    no.innerText = 'No';
-    document.getElementById('actions').appendChild(no);
-  }
-};
+function addNoButton() {
+  document.getElementById('no').style.display = 'unset';
+}
 
-const removeNoButton = function () {
-  if (document.getElementById('no')) {
-    document.getElementById('no').remove();
-  }
-};
+function removeNoButton() {
+  document.getElementById('no').style.display = 'none';
+}
+
+function removeYesButton() {
+  document.getElementById('yes').style.display = 'none';
+}
 
 // messages & questions
-const addNewMessage = function (str) {
+function addNewMessage(str) {
   for (let i = msgs.length - 1; i > 0; i--) {
     msgs[i].innerText = msgs[i - 1].innerText;
   }
   msgs[0].innerText = str;
-};
+}
 
-const askMove = function () {
+function askMove() {
   document.getElementById('question').innerText = 'Throw the dice?';
   removeNoButton();
-};
+}
 
-const askBuy = function () {
+function askBuy() {
   document.getElementById('question').innerText = 'Do you want to buy?';
   addNoButton();
-};
+}
 
 // action functions
-const throwDice = function () {
+function throwDice() {
   return Math.ceil(Math.random() * 6);
-};
+}
 
-const move = function (who, num) {
+function move(who, num) {
   tickets[who.position].guests.splice(tickets[who.position].guests.indexOf(who.name, 0), 1);
 
   // +2$ from Bank if player's token lands on or passes over GO
-  if (who.position + num >= n) {
+  if ((num <= 6) & (who.position + num >= n)) {
     who.balance += 2;
     document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
     addNewMessage(`action : ${who.name} recieved 2$ from the Bank (passed over GO)`);
@@ -164,20 +194,67 @@ const move = function (who, num) {
   who.position = (who.position + num) % n;
   tickets[who.position].guests.push(who.name);
   document.querySelectorAll('.guests')[who.position].appendChild(document.getElementById(who.name));
-};
+}
 
-const buy = function (who) {
+function buy(who) {
   who.balance -= tickets[who.position].price[0] * 1;
-  tickets[who.position].host = who;
+  tickets[who.position].owner = who;
   document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
-};
+  document.getElementById(`owner${who.position}`).style.backgroundColor = who.color;
+}
 
-const rent = function (who) {
-  who.balance -= tickets[who.position].price[0] * 1;
-  tickets[who.position].host.balance += tickets[who.position].price[0] * 1;
+function rent(who) {
+  let value = 1;
+  let amount = tickets[who.position].price[0] * 1;
+  if (tickets[who.position].owner === tickets[who.position + 1].owner || tickets[who.position].owner === tickets[who.position - 1].owner) {
+    amount *= 2;
+    value = 2;
+  }
+  who.balance -= amount;
+  tickets[who.position].owner.balance += tickets[who.position].price[0] * 1;
   document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
-  document.getElementById(`player${tickets[who.position].host.number}`).lastChild.innerText = `${tickets[who.position].host.balance}$`;
-};
+  document.getElementById(`player${tickets[who.position].owner.number}`).lastChild.innerText = `${tickets[who.position].owner.balance}$`;
+  return value;
+}
+
+function penalty(who) {
+  who.balance -= 1;
+  document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
+}
+
+function chance(who) {
+  const option = Math.ceil(Math.random() * 4);
+  switch (option) {
+    case 1: {
+      const num = Math.ceil(Math.random() * 2);
+      move(who, num);
+      addNewMessage(`CHANCE : ${who.name} made ${num} steps forward`);
+      break;
+    }
+    case 2: {
+      const pos = Math.ceil(Math.random() * n);
+      move(who, n - who.position + pos);
+      addNewMessage(`CHANCE : ${who.name} moved to ${tickets[who.position].desc}`);
+      break;
+    }
+    case 3: {
+      addNewMessage(`CHANCE : this is ${who.name}'s BirthDay. Everyone presented 1$.`);
+      for (const el of player) {
+        who.balance += 1;
+        el.balance -= 1;
+        document.getElementById(`player${el.number}`).lastChild.innerText = `${el.balance}$`;
+      }
+      document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
+      break;
+    }
+    default: {
+      addNewMessage(`CHANCE : ${who.name} paid taxes 1$ to the Bank`);
+      who.balance -= 1;
+      document.getElementById(`player${who.number}`).lastChild.innerText = `${who.balance}$`;
+      break;
+    }
+  }
+}
 
 // main play
 let counter = 0;
@@ -193,20 +270,46 @@ document.getElementById('yes').addEventListener('click', () => {
       counter++;
 
       move(player[i], num);
-      addNewMessage(`Move #${counter} : ${player[i].name} makes ${num} steps to ${tickets[player[i].position].desc}`);
+      addNewMessage(`Move #${counter} : ${player[i].name} made ${num} steps to ${tickets[player[i].position].desc}`);
 
-      const checkHost = tickets[player[i].position].host;
-      switch (checkHost) {
+      const checkDesc = tickets[player[i].position].desc;
+      switch (checkDesc) {
+        case 'GoToJail': {
+          move(player[i], n - player[i].position + 6); /* Prison is #6, total # of tickets is n */
+          penalty(player[i]);
+          addNewMessage(`action : ${player[i].name} went to Jail (1$ penalty paid)`);
+          break;
+        }
+        case 'Chance': {
+          chance(player[i]);
+          break;
+        }
+        default: { break; }
+      }
+
+      const checkOwner = tickets[player[i].position].owner;
+      switch (checkOwner) {
+        case 'noOwner': {
+          document.getElementById('whoMoves').innerText = `${player[counter % player.length].name}:`;
+          break;
+        }
         case '': {
-          askBuy();
+          if (tickets[player[i].position].price[0] <= player[i].balance) {
+            askBuy();
+          }
           break;
         }
         case player[i]: {
+          document.getElementById('whoMoves').innerText = `${player[counter % player.length].name}:`;
           break;
         }
         default: {
-          rent(player[i]);
-          addNewMessage(`action : ${player[i].name} paid rent ${tickets[player[i].position].price} to ${tickets[player[i].position].host.name}`);
+          if (rent(player[i]) === 1) {
+            addNewMessage(`action : ${player[i].name} paid rent ${tickets[player[i].position].price} to ${tickets[player[i].position].owner.name}`);
+          } else {
+            addNewMessage(`action : ${player[i].name} paid double rent ${2 * tickets[player[i].position].price[0]}$ to ${tickets[player[i].position].owner.name}`);
+          }
+          document.getElementById('whoMoves').innerText = `${player[counter % player.length].name}:`;
           break;
         }
       }
@@ -215,13 +318,33 @@ document.getElementById('yes').addEventListener('click', () => {
     case 'Do you want to buy?': {
       buy(player[i]);
       addNewMessage(`action : ${player[i].name} bought ${tickets[player[i].position].desc}`);
+      document.getElementById('whoMoves').innerText = `${player[counter % player.length].name}:`;
       askMove();
       break;
     }
     default: {
+      document.getElementById('whoMoves').innerText = `${player[i].name}:`;
       askMove();
       break;
     }
+  }
+
+  // checking game over condition
+  let max = 0;
+  let name = '';
+  let check = false;
+  for (const el of player) {
+    if (el.balance < 0) {
+      check = true;
+    }
+    if (el.balance > max) {
+      max = el.balance;
+      name = el.name;
+    }
+  }
+  if (check) {
+    addNewMessage(`Game over! ${name} wins!`);
+    removeYesButton();
   }
 });
 

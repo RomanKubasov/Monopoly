@@ -11,7 +11,11 @@
 
 <body>
   <div id = 'screen'>
-    <div id = 'title'></div>
+    <div id = 'title'>
+      <div class = 'titleWord'>LET'S</div>
+      <div id = 'titleImage'></div>
+      <div class = 'titleWord'>PLAY</div>
+    </div>
     <div id = 'main'>
       <div id = 'info'>
         <div id = 'tableau'>
@@ -20,8 +24,10 @@
           <span class = 'messages previous'></span><span class = 'messages previous'></span>
         </div>
         <div id = 'actions'>
-          <div id = 'question'>Do you want to start?</div>
+          <div id = 'whoMoves'></div>
+          <div id = 'question'>Do you want to play?</div>
           <button class = 'btn' id = 'yes'>Yes</button>
+          <button class = 'btn' id = 'no' style="display: none;">No</button>
         </div>
         <div id = 'list_of_players'>
           <div class = 'player player_title'>
