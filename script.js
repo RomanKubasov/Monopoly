@@ -206,7 +206,7 @@ function buy(who) {
 function rent(who) {
   let value = 1;
   let amount = tickets[who.position].price[0] * 1;
-  if (tickets[who.position].owner === tickets[who.position + 1].owner || tickets[who.position].owner === tickets[who.position - 1].owner) {
+  if (tickets[who.position].owner === tickets[(who.position + 1) % n].owner || tickets[who.position].owner === tickets[who.position - 1].owner) {
     amount *= 2;
     value = 2;
   }
